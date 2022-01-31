@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+
+:root {
+  --dark-color-a: #201e26;
+  --dark-color-b: #756471;
+  --light-color: #e6e9ff;
+  --success-color: #2cd42c;
+  --error-color: #bd2924;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+  font-size: 16px;
+  background: var(--dark-color-a);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 0.25em 0.75em;
+  background: var(--light-color);
+  color: var(--dark-color-a);
+  border: 0;
+  font-size: 17px;
+  border-radius: 0.25em;
+}
+
+.danger-btn {
+  background-color: var(--error-color);
+  color: white;
+}
+
+.success-btn {
+  background-color: var(--success-color);
+}
+
+/* Chat Page */
+
+.chat-header {
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 0.25em;
+  background: var(--dark-color-b);
+  color: #fff;
+}
+
+.main-space {
+  height: 80vh;
+  display: flex;
+  gap: 1em;
+  margin: 1em;
+}
+
+.chat-main {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-radius: 0.25em;
+}
+
+.chat-sidebar {
+  background: var(--dark-color-b);
+  color: #fff;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+  align-items: center;
+  border-radius: 0.25em;
+}
+
+#room-name {
+  font-size: 1em;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 0.5em;
+}
+
+.chat-sidebar ul li {
+  padding: 0.5em 0;
+}
+
+.chat-messages {
+  flex: 10;
+  padding: 1em;
+  overflow-y: scroll;
+}
+
+.chat-messages .message {
+  padding: 0.5em;
+  margin-bottom: 0.75em;
+  background-color: var(--light-color);
+  border-radius: 0.25em;
+}
+
+.chat-messages .message .meta {
+  font-size: 0.75em;
+  font-weight: bold;
+  color: var(--dark-color-a);
+  opacity: 0.9;
+  margin-bottom: 0.5em;
+}
+
+.chat-messages .message .text {
+  font-size: 0.75em;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 0.5em;
+}
+
+.chat-form-container {
+  flex: 1;
+  padding: 1em 1em;
+  background-color: var(--dark-color-b);
+  border-radius: 0.25em;
+}
+
+.chat-form {
+  display: flex;
+  flex-direction: row;
+}
+
+.chat-form input[type="text"] {
+  flex: 1;
+  font-size: 16px;
+  padding: 0.5em;
+  border-radius: 0.25em;
+}
+
+@media (max-width: 700px) {
+  .chat-sidebar {
+    display: none;
+  }
+}
