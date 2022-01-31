@@ -4,11 +4,14 @@
   "description": "WebSocket chat app",
   "main": "server.js",
   "scripts": {
-    "installDeps": "npm install --prefix client && npm install",
+    "clientInstall": "cd client && npm install",
+    "clientBuild": "cd client && npm run build",
+    "clientStart": "cd client && npm run start",
+    "installDeps": "npm run clientInstall && npm install",
+    "production": "npm run clientBuild && npm run start",
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "npm start --prefix client ",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run clientStart\""
   },
   "author": "Omkar N",
   "license": "ISC",
