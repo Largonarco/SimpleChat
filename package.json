@@ -4,11 +4,8 @@
   "description": "WebSocket chat app",
   "main": "server.js",
   "scripts": {
-    "clientInstall": "cd client && npm install",
-    "clientBuild": "cd client && npm run build",
     "clientStart": "cd client && npm run start",
-    "installDeps": "npm run clientInstall && npm install",
-    "production": "npm run clientBuild && npm run start",
+    "heroku-postbuild": "cd client && npm install && npm run build",
     "start": "node server.js",
     "server": "nodemon server.js",
     "dev": "concurrently \"npm run server\" \"npm run clientStart\""
@@ -16,11 +13,15 @@
   "author": "Omkar N",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^7.0.0",
+    "express": "^4.17.2",
     "moment": "^2.29.1",
     "socket.io": "^4.4.1"
   },
   "devDependencies": {
+    "concurrently": "^7.0.0",
     "nodemon": "^2.0.15"
+  },
+  "engines": {
+    "node": "8.9.2"
   }
 }

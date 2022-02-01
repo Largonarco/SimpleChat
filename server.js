@@ -1,3 +1,5 @@
+const Express = require("express");
+const path = require("path");
 const { Server } = require("socket.io");
 const moment = require("moment");
 
@@ -8,13 +10,20 @@ const {
   getRoomUsers,
 } = require("./utils/users");
 
-const PORT = 5000 || process.env.PORT;
+const app = Express();
+
+app.use(Express.static(path.join(__dirname, "client", "build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+
+// Http server
+const httpServer = http.createServer(app);
 
 // WebSocket server
-const io = new Server(PORT, { cors: "*" });
+const io = new Server(httpServer, { cors: "*" });
 
 io.on("connection", (socket) => {
-  // When a client connects
   socket.on("userData", (data) => {
     const user = addUser(socket.id, data.userName, data.roomName);
     socket.join(user.roomName);
@@ -28,7 +37,6 @@ io.on("connection", (socket) => {
     io.in(user.roomName).emit("users", roomUsers);
   });
 
-  // On receiving a message from a client
   socket.on("chatMessage", (message) => {
     const user = getCurrentUser(socket.id);
 
@@ -39,7 +47,6 @@ io.on("connection", (socket) => {
     });
   });
 
-  // When a client disconnects
   socket.on("disconnecting", () => {
     const user = removeUser(socket.id);
     io.in(user.roomName).emit("message", {
@@ -51,4 +58,9 @@ io.on("connection", (socket) => {
     const roomUsers = getRoomUsers(user.roomName);
     io.in(user.roomName).emit("users", roomUsers);
   });
+});
+
+const PORT = process.env.PORT || 5000;
+httpServer.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
 });
