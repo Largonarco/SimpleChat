@@ -1,42 +1,51 @@
+import {
+  Center,
+  VStack,
+  HStack,
+  FormControl,
+  Input,
+  Button,
+} from '@chakra-ui/react';
+
 const UserData = ({ toggle, setToggle, userData, setUserData }) => {
   return (
-    <div className="position-absolute top-50 start-50 translate-middle">
-      <form className="vstack gap-2">
-        <div className="hstack gap-2">
-          <input
-            className="form-control"
-            type="text"
-            placeholder="User name"
-            name="userName"
-            onChange={(e) =>
-              setUserData({ ...userData, [e.target.name]: e.target.value })
-            }
-            required
-          />
-          <input
-            className="form-control"
-            type="text"
-            placeholder="Room name"
-            name="roomName"
-            onChange={(e) =>
-              setUserData({ ...userData, [e.target.name]: e.target.value })
-            }
-            required
-          />
-        </div>
-        <button
-          className="btn btn-success"
-          onClick={(e) => {
-            e.preventDefault();
-            if (userData.userName != null && userData.roomName != null) {
-              setToggle(!toggle);
-            }
-          }}
-        >
-          Chat
-        </button>
-      </form>
-    </div>
+    <Center height="100vh" bgColor="gray.900">
+      <FormControl as="fieldset">
+        <VStack spacing="1em">
+          <HStack spacing="1em">
+            <Input
+              type="text"
+              placeholder="User name"
+              name="userName"
+              onChange={e =>
+                setUserData({ ...userData, [e.target.name]: e.target.value })
+              }
+              required
+            />
+            <Input
+              type="text"
+              placeholder="Room name"
+              name="roomName"
+              onChange={e =>
+                setUserData({ ...userData, [e.target.name]: e.target.value })
+              }
+              required
+            />
+          </HStack>
+          <Button
+            variant="outline"
+            onClick={e => {
+              e.preventDefault();
+              if (userData.userName != null && userData.roomName != null) {
+                setToggle(!toggle);
+              }
+            }}
+          >
+            Chat
+          </Button>
+        </VStack>
+      </FormControl>
+    </Center>
   );
 };
 

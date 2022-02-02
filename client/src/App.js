@@ -1,16 +1,16 @@
-import { useState } from "react";
-import UserData from "./components/UserData";
-import ChatApp from "./components/ChatApp";
+import { useState } from 'react';
+import UserData from './components/UserData';
+import ChatApp from './components/ChatApp';
 
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { ChakraProvider } from '@chakra-ui/react';
+import './App.css';
 
-const App = () => {
+function App() {
   const [toggle, setToggle] = useState(true);
   const [userData, setUserData] = useState({ userName: null, roomName: null });
-  
+
   return (
-    <>
+    <ChakraProvider>
       {toggle ? (
         <UserData
           toggle={toggle}
@@ -19,10 +19,10 @@ const App = () => {
           setUserData={setUserData}
         />
       ) : (
-        <ChatApp userData={userData}/>
+        <ChatApp userData={userData} toggle={toggle} setToggle={setToggle} />
       )}
-    </>
+    </ChakraProvider>
   );
-};
+}
 
 export default App;

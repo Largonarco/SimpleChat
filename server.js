@@ -1,8 +1,7 @@
 const Express = require("express");
 const path = require("path");
-const http = require("http")
+const http = require("http");
 const { Server } = require("socket.io");
-const moment = require("moment");
 
 const {
   addUser,
@@ -31,7 +30,6 @@ io.on("connection", (socket) => {
     socket.broadcast.to(user.roomName).emit("message", {
       user: "Server",
       message: `${user.userName} has joined the chat`,
-      time: moment().format("h:mm a"),
     });
 
     const roomUsers = getRoomUsers(user.roomName);
@@ -41,10 +39,9 @@ io.on("connection", (socket) => {
   socket.on("chatMessage", (message) => {
     const user = getCurrentUser(socket.id);
 
-    socket.broadcast.to(user.roomName).emit("message", {
+    io.in(user.roomName).emit("message", {
       user: user.userName,
       message,
-      time: moment().format("h:mm a"),
     });
   });
 
@@ -53,7 +50,6 @@ io.on("connection", (socket) => {
     io.in(user.roomName).emit("message", {
       user: "Server",
       message: `${user.userName} has left the chat`,
-      time: moment().format("h:mm a"),
     });
 
     const roomUsers = getRoomUsers(user.roomName);
