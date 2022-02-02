@@ -3,7 +3,6 @@ import UserData from './components/UserData';
 import ChatApp from './components/ChatApp';
 
 import { ChakraProvider } from '@chakra-ui/react';
-import './App.css';
 
 function App() {
   const [toggle, setToggle] = useState(true);
