@@ -14,7 +14,7 @@ import {
   ListItem,
 } from '@chakra-ui/react';
 
-const socket = io({ autoConnect: false });
+const socket = io("http://localhost:5000", { autoConnect: false });
 
 const ChatApp = ({ userData, toggle, setToggle }) => {
   const [messages, setMessages] = useState([]);
@@ -142,7 +142,7 @@ const ChatApp = ({ userData, toggle, setToggle }) => {
                   borderRadius="0.25em"
                 >
                   <Text fontSize="1em" fontWeight="semibold">
-                    {msg.user == userData.userName ? 'Self' : msg.user}{' '}
+                    {msg.user === userData.userName ? 'Self' : msg.user}{' '}
                     {msg.time}
                   </Text>
                   <Text fontSize="1em" fontWeight="normal">

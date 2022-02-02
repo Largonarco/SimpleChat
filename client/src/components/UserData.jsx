@@ -10,7 +10,7 @@ import {
 const UserData = ({ toggle, setToggle, userData, setUserData }) => {
   return (
     <Center height="100vh" bgColor="gray.900">
-      <FormControl as="fieldset">
+      <FormControl as="fieldset" p="1em">
         <VStack spacing="1em">
           <HStack spacing="1em">
             <Input
